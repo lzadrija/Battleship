@@ -11,7 +11,7 @@ Battleship is a simple Java application for finding the solution of the [Battles
 
 The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique name and form:  
 
-1. Petar Kresimir
+* Petar Kresimir
 
     >```` 
 	X
@@ -19,31 +19,28 @@ The player needs to find all the ships in the two-dimensional sea map. The two-d
     X  
     X
     ````
-    
-2. TIE fighter
+* TIE fighter
 
     >````  
     X       X
     X   X   X  
     X       X
 	````
-    
-3. X Wing
+* X Wing
 
     >````
     X       X  
         X  
     X       X
 	````
-    
-4. Y Wing
+* Y Wing
 
     >````
     X        X  
     X        X  
         X  
-	````
-
+	````  
+	
 It is important to stress that ships cannot be rotated, and therefore placed horizontally or diagonally.
 
 The game is played by calling the service written using Google Apps Script. In order to sign up for the game, the user must first obtain [the token][2]. This token is used later on in all the calls to the service.  
@@ -102,9 +99,6 @@ After all of the combinations of ships that have the combined size equal to the 
 ````
 
 First, the algorithm tries to position TIE fighter in the upper left point of the hit area (because it is the largest). If TIE fighter can be placed in this location, the algorithm tries to position X Wing is next to it, etc. This procedure is repeated for all positions of the hit area and all ships until the correct position for every ship (without overlapping between ships) within the hit area is found.
-
-
-##Installation
 
 
 ##Usage  

@@ -1,9 +1,10 @@
 package com.github.lzadrija.exceptions;
 
 /**
+ * Thrown to indicate that grid data cannot be retrieved.
+ *         
  * @author Lucija Zadrija
- * 
- *         Thrown to indicate that grid data cannot be retrieved.
+ *  
  */
 public class DataNotAvailableException extends RuntimeException {
 

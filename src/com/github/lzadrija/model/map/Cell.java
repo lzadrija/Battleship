@@ -1,13 +1,11 @@
 package com.github.lzadrija.model.map;
 
 /**
+ * Represents a cell in a grid that represents sea map. The cell can have two values - it can be occupied which means that something is
+ * located in this cell on the sea grid (water or ship) or it can be undefined - meaning that what lays in this cell is not yet discovered.
+ *         
  * @author Lucija Zadrija
- * 
- *         Represents a cell in a grid that represents sea map. The cell can
- *         have two values - it can be occupied which means that something is
- *         located in this cell on the sea grid (water or ship) or it can be
- *         undefined - meaning that what lays in this cell is not yet
- *         discovered.
+ *  
  */
 public enum Cell {
 

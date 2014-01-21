@@ -1,9 +1,10 @@
 package com.github.lzadrija.model.common;
 
 /**
+ * This class represents a point with coordinates x and y.
+ *         
  * @author Lucija Zadrija
- * 
- *         This class represents a point with coordinates x and y.
+ *  
  */
 public class Point implements Comparable<Point> {
 
@@ -24,8 +25,7 @@ public class Point implements Comparable<Point> {
 	}
 
 	/**
-	 * Returns the point that is relative to this point. This point's
-	 * coordinates are increased for the values in the given offset.
+	 * Returns the point that is relative to this point. This point's coordinates are increased for the values in the given offset.
 	 * 
 	 * @param offset
 	 *            Offset for which this point's coordinates are increased.
@@ -39,8 +39,8 @@ public class Point implements Comparable<Point> {
 	}
 
 	/**
-	 * Returns representation of point. The exact details of the representation
-	 * are subject to change, but the following may be regarded as typical:
+	 * Returns representation of point. The exact details of the representation are subject to change, but the following may 
+	 * be regarded as typical:
 	 * 
 	 * "[x = 10,  y = 15]"
 	 */

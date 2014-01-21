@@ -9,9 +9,10 @@ import com.github.lzadrija.model.services.ShipsCombinationsComputer;
 import com.github.lzadrija.model.ships.Ship;
 
 /**
+ * Repository for the fleet of ships.
+ *         
  * @author Lucija Zadrija
- * 
- *         Repository for the fleet of ships.
+ *  
  */
 public class ShipsRepository {
 
@@ -136,21 +137,17 @@ public class ShipsRepository {
 	}
 
 	/**
-	 * Returns all possible upper left coordinates of the ship with the given
-	 * index on the grid based on the ship's structure.
+	 * Returns all possible upper left coordinates of the ship with the given index on the grid based on the ship's structure.
 	 * 
 	 * @param index
 	 *            Ships index in the list of ships.
 	 * @param initialPoint
-	 *            Point on the grid that is the first upper left coordinate from
-	 *            which all other upper left coordinates are computed.
+	 *            Point on the grid that is the first upper left coordinate from which all other upper left coordinates are computed.
 	 * @return List of all possible upper left coordinates.
 	 */
-	public List<Point> getShipsAllPossibleUpperLeftCoordinates(int index,
-			Point initialPoint) {
+	public List<Point> getShipsAllPossibleUpperLeftCoordinates(int index, Point initialPoint) {
 		Ship ship = ships.get(index);
-		List<Point> coordinatesList = ship
-				.getAllPossibleUpperLeftCoordinates(initialPoint);
+		List<Point> coordinatesList = ship.getAllPossibleUpperLeftCoordinates(initialPoint);
 		return coordinatesList;
 	}
 
@@ -164,31 +161,26 @@ public class ShipsRepository {
 	}
 
 	/**
-	 * As ships can be placed right next to each other on the grid, when they
-	 * are sunk, it must be determined which ship is at which position. In order
-	 * to determine this, all combinations of the hidden ships' placements are
-	 * computed using the number of hit cells on the grid.
+	 * As ships can be placed right next to each other on the grid, when they are sunk, it must be determined which ship is at 
+	 * which position. In order to determine this, all combinations of the hidden ships' placements are computed using the number 
+	 * of hit cells on the grid.
 	 * 
 	 * @param hitShipsGroupSize
-	 *            Number of hit cells on the grid (number of coordinates of the
-	 *            hit combinations of ships).
+	 *            Number of hit cells on the grid (number of coordinates of the hit combinations of ships).
 	 * @return List of ships' placement combinations.
 	 */
-	public List<List<Ship>> getAllHiddenShipsSizeCombinations(
-			int hitShipsGroupSize) {
+	public List<List<Ship>> getAllHiddenShipsSizeCombinations(int hitShipsGroupSize) {
 
 		List<Ship> hiddenShips = getHiddenShips();
 
-		List<List<Ship>> shipsSizeCombinations = ShipsCombinationsComputer
-				.getInstance().getAllShipsSizeCombinations(hitShipsGroupSize,
-						hiddenShips);
+		List<List<Ship>> shipsSizeCombinations = ShipsCombinationsComputer.getInstance().getAllShipsSizeCombinations(hitShipsGroupSize,
+																													 hiddenShips);
 		return shipsSizeCombinations;
 	}
 
 	/**
-	 * Returns representation of ships repository. The exact details of the
-	 * representation are subject to change, but the following may be regarded
-	 * as typical:
+	 * Returns representation of ships repository. The exact details of the representation are subject to change, but the 
+	 * following may be regarded as typical:
 	 * 
 	 * Type = PETAR_KRESIMIR, position = [x = 16, y = 33]
 	 * 

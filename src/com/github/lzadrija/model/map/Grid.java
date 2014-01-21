@@ -6,13 +6,12 @@ import java.util.List;
 import com.github.lzadrija.model.common.Point;
 
 /**
+ * This class represents the (sea) map as a grid which has its height and its width. Every position on the grid, a cell, is either
+ * occupied, meaning that it contains structure (ship) or nothing (water), or undefined - meaning that it is unknown what lays on this
+ * position.
+ *         
  * @author Lucija Zadrija
- * 
- *         This class represents the (sea) map as a grid which has its height
- *         and its width. Every position on the grid, a cell, is either
- *         occupied, meaning that it contains structure (ship) or nothing
- *         (water), or undefined - meaning that it is unknown what lays on this
- *         position.
+ *  
  */
 public class Grid {
 
@@ -35,14 +34,12 @@ public class Grid {
 
 		boolean isHeightValid = isDimensionValid(height);
 		if (!isHeightValid) {
-			throw new IndexOutOfBoundsException("Grid height out of range: "
-					+ height);
+			throw new IndexOutOfBoundsException("Grid height out of range: " + height);
 		}
 
 		boolean isWidthValid = isDimensionValid(width);
 		if (!isWidthValid) {
-			throw new IndexOutOfBoundsException("Grid weight out of range: "
-					+ width);
+			throw new IndexOutOfBoundsException("Grid weight out of range: " + width);
 		}
 		this.width = width;
 		this.height = height;
@@ -86,14 +83,12 @@ public class Grid {
 	public boolean isCellOccupiedAt(Point point) {
 
 		if (!isCellPositionValid(point)) {
-			throw new IndexOutOfBoundsException("Wrong coordinate(s) format: "
-					+ point.toString());
+			throw new IndexOutOfBoundsException("Wrong coordinate(s) format: " + point.toString());
 		}
 
 		Cell cellType = grid[point.getY()][point.getX()];
 
-		boolean isCellOccupied = cellType.toString().equals(
-				Cell.OCCUPIED_CELL.toString());
+		boolean isCellOccupied = cellType.toString().equals(Cell.OCCUPIED_CELL.toString());
 
 		return isCellOccupied;
 	}
@@ -109,8 +104,7 @@ public class Grid {
 	public void occupyCellAt(Point point) {
 
 		if (!isCellPositionValid(point)) {
-			throw new IndexOutOfBoundsException("Wrong coordinate(s) format: "
-					+ point.toString());
+			throw new IndexOutOfBoundsException("Wrong coordinate(s) format: " + point.toString());
 		}
 		grid[point.getY()][point.getX()] = Cell.OCCUPIED_CELL;
 	}
@@ -139,11 +133,7 @@ public class Grid {
 	 * @return true if point's coordinates are valid
 	 */
 	private boolean isCellPositionValid(Point position) {
-		if (!isXCoordinateValid(position.getX())
-				|| !isYCoordinateValid(position.getY())) {
-			return false;
-		}
-		return true;
+		return (!isXCoordinateValid(position.getX()) || !isYCoordinateValid(position.getY())) ? false : true;	
 	}
 
 	/**
@@ -178,8 +168,7 @@ public class Grid {
 	 * @return true if structure fits on the grid by its height, or false
 	 *         otherwise.
 	 */
-	public boolean doesStructureFitInColumn(int structuresHeight,
-			int yCoordinate) {
+	public boolean doesStructureFitInColumn(int structuresHeight, int yCoordinate) {
 		int structuresPositionInColumn = (structuresHeight - 1) + yCoordinate;
 		return structuresPositionInColumn <= (height - 1);
 	}
@@ -200,11 +189,9 @@ public class Grid {
 	}
 
 	/**
-	 * Checks if the portion of the grid is occupied, in other words, if all
-	 * cells at the given positions are occupied. Cell's positions are
-	 * calculated using upper left coordinates on the grid and an array of
-	 * offset points that are used to compute points relative to the given upper
-	 * left point.
+	 * Checks if the portion of the grid is occupied, in other words, if all cells at the given positions are occupied. 
+	 * Cell's positions are calculated using upper left coordinates on the grid and an array of offset points that are used to 
+	 * compute points relative to the given upper left point.
 	 * 
 	 * @param upperLeftPoint
 	 *            Upper left coordinates from the grid.
@@ -215,12 +202,10 @@ public class Grid {
 	public boolean isGridPortionOccupied(Point upperLeftPoint,
 			List<Point> offsetsList) {
 
-		for (Iterator<Point> iterator = offsetsList.iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Point> iterator = offsetsList.iterator(); iterator.hasNext();) {
 			Point relativeCellPosition = iterator.next();
 
-			Point newPoint = upperLeftPoint
-					.getPointRelativeToThis(relativeCellPosition);
+			Point newPoint = upperLeftPoint.getPointRelativeToThis(relativeCellPosition);
 
 			if (!isCellOccupiedAt(newPoint)) {
 				return false;
@@ -230,11 +215,9 @@ public class Grid {
 	}
 
 	/**
-	 * Checks if the portion of the grid is undefined, in other words, if all
-	 * cells at the given positions are undefined. Cell's positions are
-	 * calculated using upper left coordinates on the grid and an array of
-	 * offset points that are used to compute points relative to the given upper
-	 * left point.
+	 * Checks if the portion of the grid is undefined, in other words, if all cells at the given positions are undefined. 
+	 * Cell's positions are calculated using upper left coordinates on the grid and an array of offset points that are used to 
+	 * compute points relative to the given upper left point.
 	 * 
 	 * @param upperLeftPoint
 	 *            Upper left coordinates from the grid.
@@ -245,12 +228,10 @@ public class Grid {
 	public boolean isGridPortionUndefined(Point upperLeftPoint,
 			List<Point> offsetsList) {
 
-		for (Iterator<Point> iterator = offsetsList.iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Point> iterator = offsetsList.iterator(); iterator.hasNext();) {
 			Point relativeCellPosition = iterator.next();
 
-			Point newPoint = upperLeftPoint
-					.getPointRelativeToThis(relativeCellPosition);
+			Point newPoint = upperLeftPoint.getPointRelativeToThis(relativeCellPosition);
 
 			if (isCellOccupiedAt(newPoint)) {
 				return false;
@@ -260,8 +241,8 @@ public class Grid {
 	}
 
 	/**
-	 * Returns representation of point. The exact details of the representation
-	 * are subject to change, but the following may be regarded as typical:
+	 * Returns representation of point. The exact details of the representation are subject to change, but the following may be 
+	 * regarded as typical:
 	 * 
 	 * 0 0 0 0 0 0 1 0 0 0 0 1 1 1 0 0 0 0 0 1 0 0 0 
 	 * 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 

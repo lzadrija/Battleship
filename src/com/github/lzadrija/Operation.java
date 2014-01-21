@@ -2,31 +2,31 @@ package com.github.lzadrija;
 
 import java.util.List;
 
-import com.github.lzadrija.dataProviders.IDataProvider;
+import com.github.lzadrija.dataProviders.DataProvider;
 import com.github.lzadrija.model.factories.ShipsFactory;
 import com.github.lzadrija.model.map.Grid;
 import com.github.lzadrija.model.ships.Ship;
 import com.github.lzadrija.repositories.ShipsRepository;
 import com.github.lzadrija.strategies.Executor;
 import com.github.lzadrija.strategies.IExecutor;
+import com.github.lzadrija.strategies.battle.DestroyerImpl;
 import com.github.lzadrija.strategies.battle.Destroyer;
-import com.github.lzadrija.strategies.battle.IDestroyer;
 
 /**
+ * This class initializes default group of ships and starts the process of their localization.
+ *         
  * @author Lucija Zadrija
- * 
- *         This class initializes default group of ships and starts the process
- *         of their localization.
+ *  
  */
 public class Operation {
 
-	private final IDataProvider dataProvider;
+	private final DataProvider dataProvider;
 
 	private final Grid grid;
 	private static ShipsRepository shipsRepository;
 
 	private final IExecutor executor;
-	private final IDestroyer destroyer;
+	private final Destroyer destroyer;
 
 	/**
 	 * Constructor.
@@ -38,7 +38,7 @@ public class Operation {
 	 * @throws NullPointerException
 	 *             If the parameters are null.
 	 */
-	public Operation(IDataProvider dataProvider, Grid grid) {
+	public Operation(DataProvider dataProvider, Grid grid) {
 
 		this.dataProvider = dataProvider;
 		this.grid = grid;
@@ -47,7 +47,7 @@ public class Operation {
 		createFleet();
 
 		executor = new Executor(this.dataProvider);
-		destroyer = new Destroyer(executor, this.grid);
+		destroyer = new DestroyerImpl(executor, this.grid);
 	}
 
 	/**

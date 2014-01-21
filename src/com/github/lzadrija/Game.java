@@ -3,20 +3,22 @@ package com.github.lzadrija;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.github.lzadrija.dataProviders.DataProviderImpl;
 import com.github.lzadrija.dataProviders.DataProvider;
-import com.github.lzadrija.dataProviders.IDataProvider;
 import com.github.lzadrija.exceptions.DataNotAvailableException;
 import com.github.lzadrija.model.map.Grid;
 
 /**
- * @author Lucija Zadrija
  * 
- *         Main class, used for initializing data and starting the game.
+ * Main class, used for initializing data and starting the game.
+ * 
+ * @author Lucija Zadrija
+ *  
  */
 public class Game {
 
 	private static final Logger logger = Logger.getLogger(Game.class.getName());
-	private IDataProvider dataProvider;
+	private DataProvider dataProvider;
 	private Grid grid;
 	private Operation operation;
 
@@ -40,12 +42,11 @@ public class Game {
 	 * @throws DataNotAvailableException
 	 *             If token is null or cannot be retrieved.
 	 */
-	private void createDataProvider(String token)
-			throws DataNotAvailableException {
+	private void createDataProvider(String token) throws DataNotAvailableException {
 		if (null != token) {
-			dataProvider = new DataProvider(token);
+			dataProvider = new DataProviderImpl(token);
 		} else {
-			dataProvider = new DataProvider();
+			dataProvider = new DataProviderImpl();
 			dataProvider.retrieveToken();
 		}
 	}

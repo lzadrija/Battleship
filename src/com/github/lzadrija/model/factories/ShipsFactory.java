@@ -7,9 +7,10 @@ import com.github.lzadrija.model.ships.Ship;
 import com.github.lzadrija.model.ships.ShipType;
 
 /**
+ * Used for ships creation.
+ *         
  * @author Lucija Zadrija
- * 
- *         Used for ships creation.
+ *  
  */
 public class ShipsFactory {
 

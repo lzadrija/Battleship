@@ -3,19 +3,19 @@ package com.github.lzadrija.strategies;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.lzadrija.dataProviders.IDataProvider;
+import com.github.lzadrija.dataProviders.DataProvider;
 import com.github.lzadrija.exceptions.DataNotAvailableException;
 import com.github.lzadrija.model.common.Point;
 
 /**
+ * This class is used for providing information about the cell content on the given position on the map (grid).
+ *         
  * @author Lucija Zadrija
- * 
- *         This class is used for providing information about the cell content
- *         on the given position on the map (grid).
+ *  
  */
 public class Executor implements IExecutor {
 
-	private final IDataProvider dataProvider;
+	private final DataProvider dataProvider;
 	private Map<Integer, FireResult> resultCodes;
 
 	/**
@@ -26,7 +26,7 @@ public class Executor implements IExecutor {
 	 * @throws NullPointerException
 	 *             If the data provider is null.
 	 */
-	public Executor(IDataProvider dataProvider) {
+	public Executor(DataProvider dataProvider) {
 
 		if (null == dataProvider) {
 			throw new NullPointerException();
@@ -43,8 +43,7 @@ public class Executor implements IExecutor {
 
 		Integer result = null;
 
-		result = dataProvider
-				.getCellContent(point.getX() + 1, point.getY() + 1);
+		result = dataProvider.getCellContent(point.getX() + 1, point.getY() + 1);
 
 		FireResult fireResult = resultCodes.get(result);
 
@@ -52,9 +51,8 @@ public class Executor implements IExecutor {
 	}
 
 	/**
-	 * If the sea map contains one (1) it is marked as a HIT, also if the sea
-	 * map contains zero (0) it is marked as a MISS. This method stores this
-	 * information in a map.
+	 * If the sea map contains one (1) it is marked as a HIT, also if the sea map contains zero (0) it is marked as a MISS. 
+	 * This method stores this information in a map.
 	 */
 	private void fillResultCodesMap() {
 

@@ -7,12 +7,11 @@ import java.util.List;
 import com.github.lzadrija.model.common.Point;
 
 /**
+ * This class represents a ship. Ever ship has its type and position on the grid (sea map). If ship's position is not yet undefined, it is
+ * considered that the ship is hidden. Ships can be compared by their type (by their structures's size).
+ *         
  * @author Lucija Zadrija
- * 
- *         This class represents a ship. Ever ship has its type and position on
- *         the grid (sea map). If ship's position is not yet undefined, it is
- *         considered that the ship is hidden. Ships can be compared by their
- *         type (by their structures's size).
+ *  
  */
 public class Ship implements Comparable<Ship> {
 
@@ -43,11 +42,9 @@ public class Ship implements Comparable<Ship> {
 	}
 
 	/**
-	 * Based on the ships structure, computes all possible upper left
-	 * coordinates of the ship on the grid. This is done in a way that the given
-	 * initial point is every time put as a different relative coordinate of the
-	 * ship, so that the upper left coordinate is calculated using this initial
-	 * point.
+	 * Based on the ships structure, computes all possible upper left coordinates of the ship on the grid. This is done in a way that 
+	 * the given initial point is every time put as a different relative coordinate of the ship, so that the upper left coordinate 
+	 * is calculated using this initial point.
 	 * 
 	 * @param initialPoint
 	 *            Point from the grid, first upper left coordinate
@@ -58,14 +55,11 @@ public class Ship implements Comparable<Ship> {
 
 		List<Point> upperLeftPointsList = new ArrayList<>();
 
-		for (Iterator<Point> iterator = getStructure().iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Point> iterator = getStructure().iterator(); iterator.hasNext();) {
 			Point relativePosition = iterator.next();
 
-			Point reverseRelativePosition = new Point(-relativePosition.getX(),
-					-relativePosition.getY());
-			Point newPoint = initialPoint
-					.getPointRelativeToThis(reverseRelativePosition);
+			Point reverseRelativePosition = new Point(-relativePosition.getX(), -relativePosition.getY());
+			Point newPoint = initialPoint.getPointRelativeToThis(reverseRelativePosition);
 
 			upperLeftPointsList.add(newPoint);
 		}
@@ -91,8 +85,7 @@ public class Ship implements Comparable<Ship> {
 	/**
 	 * Checks if the ship's position is undefined (if ship is hidden).
 	 * 
-	 * @return True if ships location on the grid is discovered, false
-	 *         otherwise.
+	 * @return True if ships location on the grid is discovered, false otherwise.
 	 */
 	public boolean isShipHidden() {
 		return null == position;
@@ -101,14 +94,12 @@ public class Ship implements Comparable<Ship> {
 	@Override
 	public int compareTo(Ship ship) {
 		ShipTypeComparator comparator = new ShipTypeComparator();
-
 		return comparator.compare(type, ship.type);
 	}
 
 	/**
-	 * Returns representation of ships repository. The exact details of the
-	 * representation are subject to change, but the following may be regarded
-	 * as typical:
+	 * Returns representation of ships repository. The exact details of the representation are subject to change, but the 
+	 * following may be regarded as typical:
 	 * 
 	 * Type = PETAR_KRESIMIR, position = unknown
 	 * 
@@ -119,8 +110,7 @@ public class Ship implements Comparable<Ship> {
 	@Override
 	public String toString() {
 
-		String positionString = (null != position) ? position.toString()
-				: "unknown";
+		String positionString = (null != position) ? position.toString() : "unknown";
 
 		return String.format("Type = %s, position = %s", type, positionString);
 	}
