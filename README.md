@@ -10,36 +10,35 @@ Battleship is a simple Java application for finding the solution of the [Battles
 
 
 The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique name and form:  
-
 * Petar Kresimir
 
-    >```` 
-	X
+    ```` 
+    X
     X  
     X  
     X
     ````
 * TIE fighter
 
-    >````  
+    ````  
     X       X
     X   X   X  
     X       X
 	````
 * X Wing
 
-    >````
+    ````
     X       X  
         X  
     X       X
 	````
 * Y Wing
 
-    >````
+    ````
     X        X  
     X        X  
         X  
-	````  
+	```` 
 	
 It is important to stress that ships cannot be rotated, and therefore placed horizontally or diagonally.
 
