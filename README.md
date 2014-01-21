@@ -9,11 +9,11 @@ Battleship is a simple Java application for finding the solution of the [Battles
 ##Problem description
 
 
-The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique namw and form:  
+The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique name and form:  
+
 1. Petar Kresimir
 
-    >```` 
-    X
+    >```` X
     X  
     X  
     X
@@ -66,12 +66,12 @@ In order to find the solution for the game, two algorithms were implemented. The
 
 ###Locating the ships 
 
-Algorithm for locating ships is based on probability. We iterate through each not-yet-sunk ship and try to place it on every unidentified position on the map. Unidentified positions are the ones that are not yet fired at. Every time it is possible for a ship to be placed in over an area around some position, the counter for that position is incremented. The position with the maximum number of ships that can be positioned over it becomes the next target. As there can be multiple positions with counters that have the same maximum value, the position that will be the next target is randomly selected between these positions. If there is in fact a ship positioned on the choosen target (we have a so-called HIT), the algorithm for finding and identifying ships in this area is initiated. This algorithm is repeated until a HIT is found.
+Algorithm for locating ships is based on probability. We iterate through each not-yet-sunk ship and try to place it on every unidentified position on the map. Unidentified positions are the ones that are not yet fired at. Every time it is possible for a ship to be placed in over an area around some position, the counter for that position is incremented. The position with the maximum number of ships that can be positioned over it becomes the next target. As there can be multiple positions with counters that have the same maximum value, the position that will be the next target is randomly selected between these positions. If there is in fact a ship positioned on the chosen target (we have a so-called HIT), the algorithm for finding and identifying ships in this area is initiated. This algorithm is repeated until a HIT is found.
 
 ###Eliminating located ships
 
-In order to find all of the points occupied by a ship (or a list of ships) around a found HIT, we iterate through each not-yet-sunk ship and try to place it over a HIT. If a ship can be placed over a HIT, counters for all unidentified positions covered with this ship are incremented. As in the algorithm for locating the ship on the map, the position with the highest probability is choosen for the next target. In this manner, more neareby HITs are found.  
-Here is an example of trying to place X Wing over a HIT (where a HIT is shown in uppercase):
+In order to find all of the points occupied by a ship (or a list of ships) around a found HIT, we iterate through each not-yet-sunk ship and try to place it over a HIT. If a ship can be placed over a HIT, counters for all unidentified positions covered with this ship are incremented. As in the algorithm for locating the ship on the map, the position with the highest probability is chosen for the next target. In this manner, more nearby HITs are found.  
+Here is an example of trying to place X Wing over a HIT (where a HIT is shown in upper case):
 ````
    *     x      x     *      x     x      x     x      x     x
       x      ,     x      ,     *      ,     x      ,     x	
@@ -109,12 +109,12 @@ First, the algorithm tries to position TIE fighter in the upper left point of th
 ##Usage  
 
 
-The program can be run with or without anargument. If it is run with an argument - the argument is previously fetched token. If no token is provided, the program fetches a new token.
+The program can be run with or without argument. If it is run with an argument - the argument is previously fetched token. If no token is provided, the program fetches a new token.
 For example, program can be started from the command line with the token 867711 as an argument:  
 
 ```` java –jar Battleships.jar 867711 ````  
 
-The output contains the used token and the name and position of each ship when the position of one of the ships is discovered. When all ships are found, the entire two-dimensional map is printed, where zeros represent postions that were not hit, and ones the positions that were hit (misses and ships):
+The output contains the used token and the name and position of each ship when the position of one of the ships is discovered. When all ships are found, the entire two-dimensional map is printed, where zeros represent positions that were not hit, and ones the positions that were hit (misses and ships):
 ````
 Token: 867711  
 Type = PETAR_KRESIMIR, position = unknown
