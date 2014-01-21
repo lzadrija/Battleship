@@ -9,35 +9,39 @@ Battleship is a simple Java application for finding the solution of the [Battles
 ##Problem description
 
 
-The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique namw and form:
+The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique namw and form:  
 1. Petar Kresimir
 
-   > ```` 
+    ```` 
     X
     X  
     X  
-    X````
+    X
+	````
 
 2. TIE fighter
 
     >````  
     X       X
     X   X   X  
-    X       X````
+    X       X
+	````
     
 3. X Wing
 
     >````
     X       X  
         X  
-    X       X````
+    X       X
+	````
     
 4. Y Wing
 
     >````
     X        X  
     X        X  
-        X  ````
+        X  
+		````
 
 It is important to stress that ships cannot be rotated, and therefore placed horizontally or diagonally.
 
@@ -68,7 +72,7 @@ Algorithm for locating ships is based on probability. We iterate through each no
 
 In order to find all of the points occupied by a ship (or a list of ships) around a found HIT, we iterate through each not-yet-sunk ship and try to place it over a HIT. If a ship can be placed over a HIT, counters for all unidentified positions covered with this ship are incremented. As in the algorithm for locating the ship on the map, the position with the highest probability is choosen for the next target. In this manner, more neareby HITs are found.  
 Here is an example of trying to place X Wing over a HIT (where a HIT is shown in uppercase):
->````
+````
    *     x      x     *      x     x      x     x      x     x
       x      ,     x      ,     *      ,     x      ,     x	
    x     x      x     x      x     x      *     x      x     *
@@ -79,14 +83,14 @@ This procedure is repeated until all not-yet-sunk ships can be placed over posit
 ###Identifying the eliminated ships
 
 As it is assumed that ships can be placed side by side in order to confuse the opponent, it is necessary to identify what ships are located on the hit area. First, we determine the size of the area, and what ships can fit into this area. As we have only four ships, number of possible combinations of ships is 15. In order to find all of the combinations of ships that have the combined size equal to the size of the found hit area, a recursive algorithm is used that finds these combinations using two disjoint lists of ships. Each ship covers some area on the map, for example, Y Wing covers an area of size five (it covers five points). By adding ships from one list to another and examining if the size of some combination of ships is the same as the size of the hit area, all relevant combinations can be found. If the size of all the ships in the list into which the ships are added is greater than the size of the hit area, the search in will not continue in depth for these ships. For example, if the size of the hit area is seven, then the combinations which contain ships Petar Kresimir and X Wing are discarded because the size of these ships is nine (4 + 5): 
->[__PK__]   [__XW__, YW, TF]  
+[__PK__]   [__XW__, YW, TF]  
 __[PK, XW]__ [YW, TF]       [PK, YW] [TF] . . .  
 
 The search won't explore combinations from lists [PK, XW] and [YW, TF] on left branch in level two, instead, it will continue by exploring the right branch on the same level - [PK, YW] [TF].  
 
 After all of the combinations of ships that have the combined size equal to the size of the hit area are found, the program has to find the combination that fits the shape of the hit area. Each combination of ships is then examined in a way that all of the ships from this combination are placed within the hit area. If the ships from some combination are placed within the hit area without overlapping, we've found the right combination of ships and the search is finished. For example, the hit area can be of size 21 and it can contain all four ships:
 
->````    
+````    
     X   X
 	X   X
   * + X +
@@ -108,7 +112,7 @@ First, the algorithm tries to position TIE fighter in the upper left point of th
 The program can be run with or without anargument. If it is run with an argument - the argument is previously fetched token. If no token is provided, the program fetches a new token.
 For example, program can be started from the command line with the token 867711 as an argument:  
 
->```` java –jar Battleships.jar 867711 ````  
+```` java –jar Battleships.jar 867711 ````  
 
 The output contains the used token and the name and position of each ship when the position of one of the ships is discovered. When all ships are found, the entire two-dimensional map is printed, where zeros represent postions that were not hit, and ones the positions that were hit (misses and ships):
 ````
