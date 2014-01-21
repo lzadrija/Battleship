@@ -13,7 +13,7 @@ The player needs to find all the ships in the two-dimensional sea map. The two-d
 
 1. Petar Kresimir
 
-    >```` X
+    >```` 
 	X
     X  
     X  
