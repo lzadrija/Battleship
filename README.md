@@ -17,8 +17,8 @@ The player needs to find all the ships in the two-dimensional sea map. The two-d
     X  
     X  
     X
-	````
-
+    ````
+    
 2. TIE fighter
 
     >````  
