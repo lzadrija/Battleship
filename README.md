@@ -12,7 +12,7 @@ Battleship is a simple Java application for finding the solution of the [Battles
 The player needs to find all the ships in the two-dimensional sea map. The two-dimensional sea is Y places wide and X places long. There are four ships positioned somewhere on the map, and each ship has a unique namw and form:  
 1. Petar Kresimir
 
-    ```` 
+    >```` 
     X
     X  
     X  
@@ -41,7 +41,7 @@ The player needs to find all the ships in the two-dimensional sea map. The two-d
     X        X  
     X        X  
         X  
-		````
+	````
 
 It is important to stress that ships cannot be rotated, and therefore placed horizontally or diagonally.
 
@@ -82,7 +82,7 @@ This procedure is repeated until all not-yet-sunk ships can be placed over posit
 
 ###Identifying the eliminated ships
 
-As it is assumed that ships can be placed side by side in order to confuse the opponent, it is necessary to identify what ships are located on the hit area. First, we determine the size of the area, and what ships can fit into this area. As we have only four ships, number of possible combinations of ships is 15. In order to find all of the combinations of ships that have the combined size equal to the size of the found hit area, a recursive algorithm is used that finds these combinations using two disjoint lists of ships. Each ship covers some area on the map, for example, Y Wing covers an area of size five (it covers five points). By adding ships from one list to another and examining if the size of some combination of ships is the same as the size of the hit area, all relevant combinations can be found. If the size of all the ships in the list into which the ships are added is greater than the size of the hit area, the search in will not continue in depth for these ships. For example, if the size of the hit area is seven, then the combinations which contain ships Petar Kresimir and X Wing are discarded because the size of these ships is nine (4 + 5): 
+As it is assumed that ships can be placed side by side in order to confuse the opponent, it is necessary to identify what ships are located on the hit area. First, we determine the size of the area, and what ships can fit into this area. As we have only four ships, number of possible combinations of ships is 15. In order to find all of the combinations of ships that have the combined size equal to the size of the found hit area, a recursive algorithm is used that finds these combinations using two disjoint lists of ships. Each ship covers some area on the map, for example, Y Wing covers an area of size five (it covers five points). By adding ships from one list to another and examining if the size of some combination of ships is the same as the size of the hit area, all relevant combinations can be found. If the size of all the ships in the list into which the ships are added is greater than the size of the hit area, the search in will not continue in depth for these ships. For example, if the size of the hit area is seven, then the combinations which contain ships Petar Kresimir and X Wing are discarded because the size of these ships is nine (4 + 5):  
 [__PK__]   [__XW__, YW, TF]  
 __[PK, XW]__ [YW, TF]       [PK, YW] [TF] . . .  
 
